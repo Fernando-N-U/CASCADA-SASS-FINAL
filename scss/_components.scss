@@ -1,38 +1,54 @@
-// ========================================
-// COMPONENTES
-// ========================================
-
-// NAVBAR
 .navbar {
-  background: $dark;
-  padding: $space-sm $space-md;
+  background: rgba($dark, 0.98);
+  backdrop-filter: blur(20px);
+  padding: $space-sm 0;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: $shadow;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   
   &__container {
     @include flex-between;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
+    padding: 0 $space-lg;
     
     @include tablet {
-      flex-direction: column;
+      padding: 0 $space-md;
+      flex-wrap: wrap;
       gap: $space-sm;
     }
   }
   
   &__logo {
     @include flex-center;
-    gap: $space-xs;
+    gap: $space-sm;
+    position: relative;
+    z-index: 10;
     
     img {
       width: 50px;
+      height: 50px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba($primary, 0.3));
+      transition: $transition;
     }
     
     h2 {
-      color: $primary;
-      font-size: $text-md;
+      font-size: $text-lg;
+      font-weight: 900;
+      background: $gradient-primary;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+    
+    &:hover img {
+      transform: scale(1.05) rotate(-5deg);
+      filter: drop-shadow(0 0 20px rgba($primary, 0.5));
     }
   }
   
@@ -41,39 +57,134 @@
     gap: $space-md;
     
     @include tablet {
-      flex-wrap: wrap;
-      justify-content: center;
+      width: 100%;
+      flex-direction: column;
+      gap: $space-xs;
+      background: rgba($dark-light, 0.98);
+      padding: $space-md;
+      border-radius: $radius-lg;
+      margin-top: $space-sm;
     }
   }
   
   &__link {
-    color: $white;
+    color: $light;
     font-weight: 500;
+    padding: $space-xs $space-md;
+    border-radius: $radius;
+    position: relative;
+    font-size: $text-sm;
     transition: $transition;
     
-    &:hover,
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: $gradient-primary;
+      transition: $transition;
+      border-radius: $radius-full;
+    }
+    
+    &:hover {
+      color: $primary;
+      background: rgba($primary, 0.1);
+      
+      &::before {
+        width: 60%;
+      }
+    }
+    
     &--active {
       color: $primary;
+      background: rgba($primary, 0.15);
+      font-weight: 600;
+      
+      &::before {
+        width: 60%;
+      }
+    }
+    
+    @include tablet {
+      padding: $space-sm $space-md;
+      border-radius: $radius;
+      
+      &::before {
+        display: none;
+      }
     }
   }
   
   &__cart {
     @include btn;
-    background: $primary;
+    background: $gradient-primary;
     color: $white;
+    padding: $space-sm $space-lg;
+    font-weight: 600;
+    font-size: $text-sm;
+    box-shadow: $shadow-primary;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 100%;
+      height: 100%;
+      background: rgba($white, 0.2);
+      border-radius: $radius;
+      transition: transform 0.5s ease;
+    }
+    
+    &:hover::before {
+      transform: translate(-50%, -50%) scale(1.5);
+    }
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-primary-lg;
+    }
   }
 }
 
-// BOTONES
 .btn {
   @include btn;
+  font-weight: 600;
+  font-size: $text-sm;
+  letter-spacing: 0.3px;
+  position: relative;
+  overflow: hidden;
   
   &--primary {
-    background: $primary;
+    background: $gradient-primary;
     color: $white;
+    box-shadow: $shadow-primary;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 100%;
+      height: 100%;
+      background: rgba($white, 0.2);
+      border-radius: $radius;
+      transition: transform 0.4s ease;
+    }
     
     &:hover {
-      background: darken($primary, 10%);
+      box-shadow: $shadow-primary-lg;
+      
+      &::after {
+        transform: translate(-50%, -50%) scale(1.5);
+      }
     }
   }
   
@@ -81,85 +192,154 @@
     background: transparent;
     border: 2px solid $primary;
     color: $primary;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: $gradient-primary;
+      transition: width 0.4s ease;
+      z-index: -1;
+      border-radius: $radius;
+    }
     
     &:hover {
-      background: $primary;
       color: $white;
+      border-color: $primary;
+      
+      &::before {
+        width: 100%;
+      }
     }
   }
 }
 
-// CARDS
 .card {
   background: $white;
-  border-radius: $radius;
+  border-radius: $radius-lg;
   box-shadow: $shadow;
-  padding: $space-md;
-  transition: $transition;
+  padding: 0;
+  transition: $transition-slow;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid transparent;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: $gradient-primary;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
   
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: $shadow-xl;
+    border-color: rgba($primary, 0.1);
+    
+    &::before {
+      transform: scaleX(1);
+    }
+    
+    .card__img {
+      transform: scale(1.1);
+    }
   }
   
   &__img {
     width: 100%;
-    height: 200px;
+    height: 250px;
     object-fit: cover;
-    border-radius: $radius;
-    margin-bottom: $space-sm;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  &__content {
+    padding: $space-lg;
   }
   
   &__title {
     font-size: $text-md;
-    margin-bottom: $space-xs;
+    margin-bottom: $space-sm;
+    color: $dark;
+    font-weight: 700;
   }
   
   &__text {
     font-size: $text-sm;
-    color: #666;
-    margin-bottom: $space-sm;
+    color: $text-light;
+    margin-bottom: $space-md;
+    line-height: 1.7;
   }
   
   &__footer {
     @include flex-between;
+    padding: $space-md $space-lg;
+    background: $light;
     
     span {
       font-size: $text-lg;
       color: $primary;
-      font-weight: 700;
+      font-weight: 800;
     }
   }
 }
 
-// FORMULARIO
 .form {
   background: $white;
-  padding: $space-lg;
-  border-radius: $radius;
-  box-shadow: $shadow;
+  padding: $space-2xl;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-lg;
+  border: 1px solid $light-gray;
+  
+  @include mobile {
+    padding: $space-lg;
+  }
+  
+  h2 {
+    color: $dark;
+    margin-bottom: $space-md;
+  }
   
   &__group {
-    margin-bottom: $space-md;
+    margin-bottom: $space-lg;
   }
   
   &__label {
     display: block;
     margin-bottom: $space-xs;
     font-weight: 600;
+    color: $dark;
+    font-size: $text-sm;
   }
   
   &__input,
   &__textarea {
     width: 100%;
-    padding: $space-sm;
-    border: 2px solid $light;
+    padding: $space-md;
+    border: 2px solid $light-gray;
     border-radius: $radius;
     font-family: $font-main;
     transition: $transition;
+    font-size: $text-sm;
+    background: $white;
     
     &:focus {
       outline: none;
       border-color: $primary;
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+    
+    &::placeholder {
+      color: $text-light;
     }
   }
   

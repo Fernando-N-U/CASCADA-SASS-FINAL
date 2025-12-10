@@ -1,66 +1,81 @@
-// ========================================
-// LAYOUT - CORREGIDO RESPONSIVE
-// ========================================
-
-// HERO
 .hero {
-  background: linear-gradient(135deg, $primary, darken($primary, 15%));
-  padding: $space-xl $space-md;
-  border-radius: $radius;
-  margin: $space-md;
+  background: $gradient-overlay;
+  position: relative;
+  padding: $space-3xl $space-md;
+  margin: 0;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.1;
+  }
   
   @include tablet {
-    padding: $space-lg $space-sm;
-    margin: $space-sm;
+    padding: $space-2xl $space-md;
+  }
+  
+  @include mobile {
+    padding: $space-xl $space-sm;
   }
   
   &__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: $space-lg;
+    gap: $space-2xl;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
     
     @include tablet {
       grid-template-columns: 1fr;
       text-align: center;
-      gap: $space-md;
+      gap: $space-xl;
     }
   }
   
   &__content {
     h3 {
       color: $secondary;
-      font-size: $text-base;
+      font-size: $text-sm;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: $space-xs;
+      letter-spacing: 3px;
+      margin-bottom: $space-sm;
+      font-weight: 800;
       
       @include mobile {
-        font-size: $text-sm;
+        font-size: $text-xs;
       }
     }
     
     h1 {
       color: $white;
-      margin-bottom: $space-sm;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      margin-bottom: $space-md;
+      text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+      line-height: 1.1;
       
       @include tablet {
-        font-size: 2rem;
+        font-size: $text-2xl;
       }
       
       @include mobile {
-        font-size: 1.75rem;
+        font-size: $text-xl;
       }
     }
     
     p {
-      color: $white;
+      color: rgba($white, 0.95);
       font-size: $text-md;
-      margin-bottom: $space-md;
+      margin-bottom: $space-lg;
       line-height: 1.8;
+      font-weight: 400;
       
       @include tablet {
         font-size: $text-base;
@@ -68,22 +83,24 @@
       
       @include mobile {
         font-size: $text-sm;
-        margin-bottom: $space-sm;
+        margin-bottom: $space-md;
       }
     }
   }
   
   &__buttons {
     display: flex;
-    gap: $space-sm;
+    gap: $space-md;
     
     @include tablet {
       justify-content: center;
+      flex-wrap: wrap;
     }
     
     @include mobile {
       flex-direction: column;
       width: 100%;
+      gap: $space-sm;
     }
   }
   
@@ -96,116 +113,136 @@
       max-width: 100%;
       width: 100%;
       height: auto;
-      max-width: 400px;
-      filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+      max-width: 500px;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
       animation: float 3s ease-in-out infinite;
       
       @include tablet {
-        max-width: 300px;
+        max-width: 350px;
       }
       
       @include mobile {
-        max-width: 250px;
+        max-width: 280px;
       }
     }
   }
   
   &__price {
     position: absolute;
-    top: -20px;
-    right: -20px;
-    background: $secondary;
+    top: -30px;
+    right: -30px;
+    background: $gradient-secondary;
     color: $dark;
-    padding: $space-sm $space-md;
-    border-radius: $radius;
+    padding: $space-md $space-lg;
+    border-radius: $radius-lg;
     font-size: $text-lg;
-    font-weight: 700;
-    transform: rotate(15deg);
-    box-shadow: $shadow;
+    font-weight: 900;
+    transform: rotate(12deg);
+    box-shadow: $shadow-xl;
     text-align: center;
     line-height: 1.2;
+    border: 3px solid $white;
     
     @include tablet {
       font-size: $text-md;
-      padding: $space-xs $space-sm;
-      top: -10px;
-      right: -10px;
+      padding: $space-sm $space-md;
+      top: -20px;
+      right: -20px;
     }
     
     @include mobile {
       font-size: $text-base;
-      padding: $space-xs;
-      top: -5px;
-      right: -5px;
+      padding: $space-xs $space-sm;
+      top: -10px;
+      right: -10px;
     }
   }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-20px) rotate(2deg); 
+  }
 }
 
-// GRID DE PRODUCTOS
 .products {
-  @include grid(3, $space-md);
-  padding: $space-md;
-  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: $space-xl;
+  padding: $space-2xl $space-md;
+  max-width: 1400px;
   margin: 0 auto;
   
   @include tablet {
-    @include grid(2, $space-sm);
-    padding: $space-sm;
+    gap: $space-lg;
+    padding: $space-xl $space-md;
   }
   
   @include mobile {
-    @include grid(1, $space-sm);
-    padding: $space-sm;
+    grid-template-columns: 1fr;
+    gap: $space-lg;
+    padding: $space-lg $space-sm;
   }
 }
 
-// SECCIÓN DE CONTENIDO
 .content {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: $space-lg $space-md;
+  padding: $space-2xl $space-md;
   
   @include tablet {
-    padding: $space-md $space-sm;
+    padding: $space-xl $space-md;
   }
   
   @include mobile {
-    padding: $space-sm;
+    padding: $space-lg $space-sm;
   }
   
   &__grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: $space-lg;
+    gap: $space-2xl;
     
     @include tablet {
       grid-template-columns: 1fr;
-      gap: $space-md;
+      gap: $space-xl;
     }
   }
   
   &__main {
     background: $white;
-    padding: $space-lg;
-    border-radius: $radius;
-    box-shadow: $shadow;
+    padding: $space-2xl;
+    border-radius: $radius-xl;
+    box-shadow: $shadow-md;
+    border: 1px solid $light-gray;
     
     @include tablet {
-      padding: $space-md;
+      padding: $space-lg;
     }
     
     @include mobile {
-      padding: $space-sm;
+      padding: $space-md;
     }
     
     h2 {
-      color: $primary;
-      margin-bottom: $space-md;
+      color: $dark;
+      margin-bottom: $space-lg;
+      position: relative;
+      padding-bottom: $space-sm;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: $gradient-primary;
+        border-radius: $radius-full;
+      }
       
       @include mobile {
         font-size: $text-md;
@@ -213,29 +250,52 @@
     }
     
     p {
-      margin-bottom: $space-sm;
-      line-height: 1.8;
+      margin-bottom: $space-md;
+      line-height: 1.9;
+      color: $text-light;
+    }
+    
+    strong {
+      color: $dark;
+      font-weight: 600;
     }
   }
   
   &__sidebar {
     background: $white;
-    padding: $space-lg;
-    border-radius: $radius;
-    box-shadow: $shadow;
+    padding: $space-xl;
+    border-radius: $radius-xl;
+    box-shadow: $shadow-md;
     height: fit-content;
+    position: sticky;
+    top: 100px;
+    border: 1px solid $light-gray;
     
     @include tablet {
-      padding: $space-md;
+      position: static;
+      padding: $space-lg;
     }
     
     @include mobile {
-      padding: $space-sm;
+      padding: $space-md;
     }
     
     h3 {
-      color: $primary;
+      color: $dark;
       margin-bottom: $space-md;
+      position: relative;
+      padding-bottom: $space-sm;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: $gradient-primary;
+        border-radius: $radius-full;
+      }
       
       @include mobile {
         font-size: $text-base;
@@ -245,49 +305,94 @@
     ul {
       li {
         padding: $space-sm 0;
-        border-bottom: 1px solid $light;
+        border-bottom: 1px solid $light-gray;
+        color: $text-light;
+        font-size: $text-sm;
+        transition: $transition;
         
-        &:before {
+        &:last-child {
+          border-bottom: none;
+        }
+        
+        &::before {
           content: '✓';
           color: $primary;
-          margin-right: $space-xs;
+          margin-right: $space-sm;
           font-weight: bold;
+        }
+        
+        &:hover {
+          color: $dark;
+          padding-left: $space-xs;
         }
       }
     }
   }
 }
 
-// FOOTER
 .footer {
-  background: $dark;
+  background: $gradient-dark;
   color: $white;
-  padding: $space-lg $space-md;
-  margin-top: $space-xl;
+  padding: $space-3xl $space-md $space-xl;
+  margin-top: $space-3xl;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
   
   @include tablet {
-    padding: $space-md $space-sm;
+    padding: $space-2xl $space-md $space-md;
   }
   
   @include mobile {
-    padding: $space-sm;
+    padding: $space-xl $space-sm $space-sm;
   }
   
   &__grid {
-    @include grid(3, $space-lg);
-    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $space-2xl;
+    max-width: 1400px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
     
     @include tablet {
-      @include grid(1, $space-md);
+      grid-template-columns: 1fr;
+      gap: $space-xl;
       text-align: center;
     }
   }
   
   &__col {
     h3 {
-      color: $primary;
-      margin-bottom: $space-sm;
+      color: $white;
+      margin-bottom: $space-md;
+      font-size: $text-md;
+      position: relative;
+      display: inline-block;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 50%;
+        height: 2px;
+        background: $gradient-primary;
+        border-radius: $radius-full;
+        
+        @include tablet {
+          left: 25%;
+        }
+      }
       
       @include mobile {
         font-size: $text-base;
@@ -295,28 +400,33 @@
     }
     
     p, a {
-      color: $light;
+      color: rgba($white, 0.8);
       font-size: $text-sm;
-      line-height: 1.8;
+      line-height: 2;
+      transition: $transition;
+      display: block;
       
       &:hover {
         color: $primary;
+        padding-left: $space-xs;
       }
     }
   }
   
   &__bottom {
     text-align: center;
-    margin-top: $space-lg;
-    padding-top: $space-md;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: $light;
+    margin-top: $space-2xl;
+    padding-top: $space-lg;
+    border-top: 1px solid rgba($white, 0.1);
+    color: rgba($white, 0.7);
     font-size: $text-sm;
+    position: relative;
+    z-index: 1;
     
     @include mobile {
-      margin-top: $space-md;
-      padding-top: $space-sm;
-      font-size: 0.75rem;
+      margin-top: $space-xl;
+      padding-top: $space-md;
+      font-size: $text-xs;
     }
   }
 }

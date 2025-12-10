@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contáctanos - BigBurger - Pedidos y consultas">
     <title>Contacto - BigBurger</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     
-    <!-- NAVBAR -->
     <nav class="navbar">
         <div class="navbar__container">
             <div class="navbar__logo">
-                <img src="img/logo.png" alt="BigBurger">
+                <img src="img/logo.png" alt="Logo BigBurger">
                 <h2>BIGBURGER</h2>
             </div>
             <ul class="navbar__menu">
@@ -22,16 +22,14 @@
                 <li><a href="nosotros.html" class="navbar__link">Nosotros</a></li>
                 <li><a href="contacto.html" class="navbar__link navbar__link--active">Contacto</a></li>
             </ul>
-            <button class="navbar__cart">🛒 (1)</button>
+            <button class="navbar__cart" aria-label="Carrito de compras">🛒 (0)</button>
         </div>
     </nav>
 
-    <!-- CONTENIDO -->
     <div class="content">
-        <h1 style="text-align: center; color: #FF6B35; margin-bottom: 2rem;">Contáctanos</h1>
+        <h1 style="text-align: center; color: #FF6B35; margin-bottom: 3rem;">Contáctanos</h1>
         
         <div class="content__grid">
-            <!-- FORMULARIO -->
             <div class="form">
                 <h2>Envíanos un mensaje</h2>
                 <p style="margin-bottom: 1.5rem; color: #666;">¿Tienes alguna pregunta o comentario? Completa el formulario y te responderemos lo antes posible.</p>
@@ -66,7 +64,6 @@
                 </form>
             </div>
             
-            <!-- INFORMACIÓN DE CONTACTO -->
             <div class="content__sidebar">
                 <h3>Información de Contacto</h3>
                 <ul>
@@ -86,7 +83,7 @@
                         pedidos@bigburger.com
                     </li>
                     <li>
-                        <strong>🕐 Horario:</strong><br>
+                        <strong>🕒 Horario:</strong><br>
                         Lunes - Jueves: 11AM - 10PM<br>
                         Viernes - Sábado: 11AM - 11PM<br>
                         Domingo: 11AM - 10PM
@@ -106,10 +103,18 @@
                     Realizamos delivery a toda la ciudad de Lima. Pedido mínimo: S/25. Tiempo de entrega: 30-45 minutos.
                 </p>
             </div>
+            
+            <div class="mapa-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.301703841554!2d-77.03686668565958!3d-12.046373991452947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8b5d35662c7%3A0x14206cb9cc452e4a!2sPlaza%20de%20Armas%20de%20Lima!5e0!3m2!1ses!2spe!4v1650000000000!5m2!1ses!2spe" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer__grid">
             <div class="footer__col">
@@ -118,18 +123,18 @@
                 <p>Las mejores hamburguesas artesanales desde 2024</p>
             </div>
             <div class="footer__col">
-                <h3>Enlaces</h3>
-                <p><a href="menu.html">Menú</a></p>
-                <p><a href="especiales.html">Especiales</a></p>
-                <p><a href="nosotros.html">Nosotros</a></p>
-                <p><a href="contacto.html">Contacto</a></p>
+                <h3>Enlaces Rápidos</h3>
+                <a href="menu.html">Nuestro Menú</a>
+                <a href="especiales.html">Promociones</a>
+                <a href="nosotros.html">Sobre Nosotros</a>
+                <a href="contacto.html">Contáctanos</a>
             </div>
             <div class="footer__col">
-                <h3>Contacto</h3>
+                <h3>Contáctanos</h3>
                 <p>📍 Av. Principal 123, Lima</p>
                 <p>📞 (01) 234-5678</p>
                 <p>✉️ info@bigburger.com</p>
-                <p>🕐 Lun-Dom: 11AM - 11PM</p>
+                <p>🕒 Lun-Dom: 11AM - 11PM</p>
             </div>
         </div>
         <div class="footer__bottom">
@@ -137,5 +142,6 @@
         </div>
     </footer>
 
+    <script src="js/app.js"></script>
 </body>
 </html>
