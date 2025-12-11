@@ -39,6 +39,42 @@ const productos = {
     descripcion: "Pollo crispy picante con jalapeños frescos, queso fundido y salsa ranch cremosa. Para los que buscan un toque picante.",
     ingredientes: ["Pollo Crispy Picante", "Jalapeños", "Queso", "Salsa Ranch", "Lechuga", "Tomate", "Pan Brioche"],
     precio: 21.90
+  },
+  "🎉 Lunes Clásico": {
+    imagen: "img/burger1.png",
+    descripcion: "Classic Burger + Papas Fritas + Gaseosa. ¡Promoción especial solo los lunes!",
+    ingredientes: ["Classic Burger", "Papas Fritas Medianas", "Gaseosa 500ml"],
+    precio: 15.90
+  },
+  "🔥 Martes BBQ": {
+    imagen: "img/burger2.png",
+    descripcion: "BBQ Bacon Burger + Aros de Cebolla + Bebida. ¡Imperdible oferta de martes!",
+    ingredientes: ["BBQ Bacon Burger", "Aros de Cebolla", "Bebida Grande"],
+    precio: 19.90
+  },
+  "💥 2x1 Miércoles": {
+    imagen: "img/burger3.jpg",
+    descripcion: "Lleva 2 hamburguesas Classic por el precio de 1. ¡Solo miércoles!",
+    ingredientes: ["2x Classic Burger", "Incluye vegetales frescos"],
+    precio: 18.90
+  },
+  "👨‍👩‍👧‍👦 Combo Familiar": {
+    imagen: "img/burger-hero.png",
+    descripcion: "4 Hamburguesas + 2 Papas Grandes + 4 Bebidas. ¡Perfecto para compartir en familia!",
+    ingredientes: ["4 Hamburguesas a elección", "2 Papas Grandes", "4 Bebidas"],
+    precio: 79.90
+  },
+  "🎓 Promo Estudiante": {
+    imagen: "img/promoburger1.jpg",
+    descripcion: "Hamburguesa + Papas + Bebida. Con carnet universitario válido",
+    ingredientes: ["Hamburguesa Classic", "Papas Medianas", "Bebida"],
+    precio: 16.90
+  },
+  "🎊 Weekend Special": {
+    imagen: "img/promoburger2.png",
+    descripcion: "Big Bacon Deluxe + Papas + 2 Bebidas. Viernes a Domingo",
+    ingredientes: ["Big Bacon Deluxe", "Papas Grandes", "2 Bebidas"],
+    precio: 32.90
   }
 };
 
@@ -62,7 +98,6 @@ function inicializarApp() {
   configurarBotonesDetalle();
   configurarCarrito();
   configurarFormulario();
-  configurarMenuMovil();
   animarElementosAlScroll();
   configurarScrollToTop();
 }
@@ -79,7 +114,8 @@ function configurarBotonesAgregar() {
         if (!card) return;
         
         const titulo = card.querySelector('.card__title').textContent.trim();
-        const precioTexto = card.querySelector('.card__footer span').textContent;
+        const precioElement = card.querySelector('.card__footer span, .fs-3.fw-bold.text-primary');
+        const precioTexto = precioElement.textContent;
         const precio = parseFloat(precioTexto.replace('S/', '').replace(',', '.'));
         const imagen = card.querySelector('.card__img')?.src || productos[titulo]?.imagen || 'img/burger1.png';
         
@@ -91,87 +127,100 @@ function configurarBotonesAgregar() {
         });
         
         animarBoton(this);
-        mostrarNotificacion('✓ Producto agregado al carrito', 'success');
+        mostrarNotificacion('✅ Producto agregado al carrito', 'success');
       });
     }
   });
 }
 
 function configurarBotonesDetalle() {
-  document.querySelectorAll('.card').forEach(card => {
-    const footer = card.querySelector('.card__footer');
-    const titulo = card.querySelector('.card__title').textContent.trim();
+  const cards = document.querySelectorAll('.card');
+  
+  cards.forEach(card => {
+    const btnDetalle = card.querySelector('.btn-detalle');
+    if (!btnDetalle) return;
     
-    if (footer && productos[titulo]) {
-      const btnDetalle = document.createElement('button');
-      btnDetalle.className = 'btn-detalle';
-      btnDetalle.textContent = 'Ver Detalles';
-      btnDetalle.style.marginLeft = '8px';
+    btnDetalle.addEventListener('click', function(e) {
+      e.preventDefault();
+      const titulo = card.querySelector('.card__title').textContent.trim();
       
-      btnDetalle.addEventListener('click', () => {
-        mostrarModalProducto(titulo);
-      });
-      
-      footer.appendChild(btnDetalle);
-    }
+      if (productos[titulo]) {
+        mostrarModalProductoBootstrap(titulo);
+      }
+    });
   });
 }
 
-function mostrarModalProducto(nombreProducto) {
+function mostrarModalProductoBootstrap(nombreProducto) {
   const producto = productos[nombreProducto];
   if (!producto) return;
   
-  const modalExistente = document.getElementById('modal-producto');
+  const modalExistente = document.getElementById('modal-producto-bs');
   if (modalExistente) modalExistente.remove();
   
   const modal = document.createElement('div');
-  modal.id = 'modal-producto';
-  modal.className = 'modal-producto';
+  modal.id = 'modal-producto-bs';
+  modal.className = 'modal fade';
+  modal.setAttribute('tabindex', '-1');
   
   modal.innerHTML = `
-    <div class="modal-contenido">
-      <img src="${producto.imagen}" alt="${nombreProducto}" class="modal-producto__imagen">
-      <div class="modal-producto__info">
-        <h2>${nombreProducto}</h2>
-        <p class="modal-producto__info-desc">${producto.descripcion}</p>
-        
-        <div class="modal-producto__info-ingredientes">
-          <h3>Ingredientes:</h3>
-          <ul>
-            ${producto.ingredientes.map(ing => `<li>${ing}</li>`).join('')}
-          </ul>
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-white fw-bold">${nombreProducto}</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
         </div>
-        
-        <div class="modal-producto__info-footer">
-          <span class="precio">S/${producto.precio.toFixed(2)}</span>
-          <button class="btn btn--primary" onclick="agregarDesdeModal('${nombreProducto}', ${producto.precio}, '${producto.imagen}')">
-            Agregar al Carrito
-          </button>
+        <div class="modal-body p-0">
+          <div class="row g-0">
+            <div class="col-md-6">
+              <img src="${producto.imagen}" alt="${nombreProducto}" class="w-100" style="height: 400px; object-fit: cover;">
+            </div>
+            <div class="col-md-6 p-4">
+              <p class="text-muted mb-4">${producto.descripcion}</p>
+              
+              <div class="bg-light rounded p-3 mb-4">
+                <h6 class="fw-bold mb-3">Ingredientes:</h6>
+                <ul class="list-unstyled mb-0">
+                  ${producto.ingredientes.map(ing => `
+                    <li class="mb-2">
+                      <span class="text-primary fw-bold">✓</span> ${ing}
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+              
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="fs-2 fw-bold text-primary">S/${producto.precio.toFixed(2)}</span>
+                <button class="btn btn--primary" onclick="agregarDesdeModalBS('${nombreProducto.replace(/'/g, "\\'")}', ${producto.precio}, '${producto.imagen}')">
+                  Agregar al Carrito
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   `;
   
   document.body.appendChild(modal);
-  setTimeout(() => modal.classList.add('active'), 10);
   
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) cerrarModalProducto();
+  const bsModal = new bootstrap.Modal(modal);
+  bsModal.show();
+  
+  modal.addEventListener('hidden.bs.modal', function () {
+    modal.remove();
   });
 }
 
-function cerrarModalProducto() {
-  const modal = document.getElementById('modal-producto');
-  if (modal) {
-    modal.classList.remove('active');
-    setTimeout(() => modal.remove(), 300);
-  }
-}
-
-window.agregarDesdeModal = function(nombre, precio, imagen) {
+window.agregarDesdeModalBS = function(nombre, precio, imagen) {
   agregarAlCarrito({ nombre, precio, cantidad: 1, imagen });
-  mostrarNotificacion('✓ Producto agregado al carrito', 'success');
-  cerrarModalProducto();
+  mostrarNotificacion('✅ Producto agregado al carrito', 'success');
+  
+  const modalElement = document.getElementById('modal-producto-bs');
+  const modal = bootstrap.Modal.getInstance(modalElement);
+  if (modal) {
+    modal.hide();
+  }
 };
 
 function animarBoton(boton) {
@@ -387,42 +436,6 @@ function mostrarNotificacion(mensaje, tipo = 'info') {
     notificacion.classList.remove('active');
     setTimeout(() => notificacion.remove(), 300);
   }, 3000);
-}
-
-function configurarMenuMovil() {
-  const navbar = document.querySelector('.navbar__container');
-  const menu = document.querySelector('.navbar__menu');
-  
-  if (!navbar || !menu) return;
-  
-  let menuIcon = document.querySelector('.menu-movil');
-  
-  if (window.innerWidth <= 768 && !menuIcon) {
-    menuIcon = document.createElement('button');
-    menuIcon.className = 'menu-movil';
-    menuIcon.innerHTML = '☰';
-    menuIcon.setAttribute('aria-label', 'Menú');
-    
-    const logo = navbar.querySelector('.navbar__logo');
-    logo.parentNode.insertBefore(menuIcon, logo.nextSibling);
-    
-    menu.classList.add('menu-oculto');
-    
-    menuIcon.addEventListener('click', function() {
-      menu.classList.toggle('menu-oculto');
-      this.innerHTML = menu.classList.contains('menu-oculto') ? '☰' : '×';
-    });
-  }
-  
-  window.addEventListener('resize', function() {
-    if (window.innerWidth > 768) {
-      menu.classList.remove('menu-oculto');
-      const btn = document.querySelector('.menu-movil');
-      if (btn) btn.remove();
-    } else if (window.innerWidth <= 768 && !document.querySelector('.menu-movil')) {
-      configurarMenuMovil();
-    }
-  });
 }
 
 function animarElementosAlScroll() {

@@ -3,134 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Menú completo de BigBurger - Hamburguesas artesanales premium">
     <title>Menú - BigBurger</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     
-    <nav class="navbar">
-        <div class="navbar__container">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container-fluid navbar__container">
             <div class="navbar__logo">
                 <img src="img/logo.png" alt="Logo BigBurger">
                 <h2>BIGBURGER</h2>
             </div>
-            <ul class="navbar__menu">
-                <li><a href="index.html" class="navbar__link">Home</a></li>
-                <li><a href="menu.html" class="navbar__link navbar__link--active">Menú</a></li>
-                <li><a href="especiales.html" class="navbar__link">Especiales</a></li>
-                <li><a href="nosotros.html" class="navbar__link">Nosotros</a></li>
-                <li><a href="contacto.html" class="navbar__link">Contacto</a></li>
-            </ul>
-            <button class="navbar__cart" aria-label="Carrito de compras">🛒 (0)</button>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto navbar__menu">
+                    <li class="nav-item"><a href="index.html" class="navbar__link">Home</a></li>
+                    <li class="nav-item"><a href="menu.html" class="navbar__link navbar__link--active">Menú</a></li>
+                    <li class="nav-item"><a href="especiales.html" class="navbar__link">Especiales</a></li>
+                    <li class="nav-item"><a href="nosotros.html" class="navbar__link">Nosotros</a></li>
+                    <li class="nav-item"><a href="contacto.html" class="navbar__link">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <button class="navbar__cart ms-3">🛒 (0)</button>
         </div>
     </nav>
 
-    <div class="content">
-        <h1 style="text-align: center; color: #FF6B35; margin-bottom: 3rem;">Nuestro Menú Completo</h1>
+    <div class="container my-5">
+        <h1 class="text-center mb-5" style="color: #FF6B35;">Nuestro Menú Completo</h1>
         
-        <section class="products">
-            <article class="card">
-                <img src="img/burger1.png" alt="Classic Burger" class="card__img">
-                <div class="card__content">
-                    <h3 class="card__title">Classic Burger</h3>
-                    <p class="card__text">Hamburguesa clásica con queso cheddar, lechuga fresca, tomate y salsa especial de la casa</p>
-                </div>
-                <div class="card__footer">
-                    <span>S/18.90</span>
-                    <button class="btn btn--primary">Agregar</button>
-                </div>
-            </article>
+        <div class="row g-4">
+            
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card h-100">
+                    <img src="img/burger1.png" alt="Classic Burger" class="card__img">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card__title">Classic Burger</h3>
+                        <p class="card__text flex-grow-1">Hamburguesa clásica con queso cheddar, lechuga fresca, tomate y salsa especial de la casa</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="fs-3 fw-bold text-primary">S/18.90</span>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-primary btn-detalle">Ver</button>
+                                <button class="btn btn-sm btn--primary">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
 
-            <article class="card">
-                <img src="img/burger2.png" alt="BBQ Bacon" class="card__img">
-                <div class="card__content">
-                    <h3 class="card__title">BBQ Bacon</h3>
-                    <p class="card__text">Con tocino crocante, salsa BBQ ahumada y aros de cebolla crujientes</p>
-                </div>
-                <div class="card__footer">
-                    <span>S/22.90</span>
-                    <button class="btn btn--primary">Agregar</button>
-                </div>
-            </article>
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card h-100">
+                    <img src="img/burger2.png" alt="BBQ Bacon" class="card__img">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card__title">BBQ Bacon</h3>
+                        <p class="card__text flex-grow-1">Con tocino crocante, salsa BBQ ahumada y aros de cebolla crujientes</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="fs-3 fw-bold text-primary">S/22.90</span>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-primary btn-detalle">Ver</button>
+                                <button class="btn btn-sm btn--primary">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
 
-            <article class="card">
-                <img src="img/burger3.jpg" alt="Doble Queso" class="card__img">
-                <div class="card__content">
-                    <h3 class="card__title">Doble Queso</h3>
-                    <p class="card__text">Doble carne de res, doble queso cheddar fundido y salsa especial</p>
-                </div>
-                <div class="card__footer">
-                    <span>S/24.90</span>
-                    <button class="btn btn--primary">Agregar</button>
-                </div>
-            </article>
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card h-100">
+                    <img src="img/burger3.jpg" alt="Doble Queso" class="card__img">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card__title">Doble Queso</h3>
+                        <p class="card__text flex-grow-1">Doble carne de res, doble queso cheddar fundido y salsa especial</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="fs-3 fw-bold text-primary">S/24.90</span>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-primary btn-detalle">Ver</button>
+                                <button class="btn btn-sm btn--primary">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
 
-            <article class="card">
-                <img src="img/burger-h2.png" alt="Big Bacon Deluxe" class="card__img">
-                <div class="card__content">
-                    <h3 class="card__title">Big Bacon Deluxe</h3>
-                    <p class="card__text">Carne premium angus, tocino ahumado, queso cheddar y salsa secreta</p>
-                </div>
-                <div class="card__footer">
-                    <span>S/28.90</span>
-                    <button class="btn btn--primary">Agregar</button>
-                </div>
-            </article>
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card h-100">
+                    <img src="img/burger-h2.png" alt="Big Bacon Deluxe" class="card__img">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card__title">Big Bacon Deluxe</h3>
+                        <p class="card__text flex-grow-1">Carne premium angus, tocino ahumado, queso cheddar y salsa secreta</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="fs-3 fw-bold text-primary">S/28.90</span>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-primary btn-detalle">Ver</button>
+                                <button class="btn btn-sm btn--primary">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
 
-            <article class="card">
-                <img src="img/promoburger1.jpg" alt="Veggie Burger" class="card__img">
-                <div class="card__content">
-                    <h3 class="card__title">Veggie Burger</h3>
-                    <p class="card__text">Hamburguesa vegetariana con queso, aguacate, lechuga y tomate</p>
-                </div>
-                <div class="card__footer">
-                    <span>S/20.90</span>
-                    <button class="btn btn--primary">Agregar</button>
-                </div>
-            </article>
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card h-100">
+                    <img src="img/promoburger1.jpg" alt="Veggie Burger" class="card__img">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card__title">Veggie Burger</h3>
+                        <p class="card__text flex-grow-1">Hamburguesa vegetariana con queso, aguacate, lechuga y tomate</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="fs-3 fw-bold text-primary">S/20.90</span>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-primary btn-detalle">Ver</button>
+                                <button class="btn btn-sm btn--primary">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
 
-            <article class="card">
-                <img src="img/promoburger2.png" alt="Spicy Chicken" class="card__img">
-                <div class="card__content">
-                    <h3 class="card__title">Spicy Chicken</h3>
-                    <p class="card__text">Pollo crispy picante con jalapeños, queso y salsa ranch</p>
-                </div>
-                <div class="card__footer">
-                    <span>S/21.90</span>
-                    <button class="btn btn--primary">Agregar</button>
-                </div>
-            </article>
-        </section>
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card h-100">
+                    <img src="img/promoburger2.png" alt="Spicy Chicken" class="card__img">
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card__title">Spicy Chicken</h3>
+                        <p class="card__text flex-grow-1">Pollo crispy picante con jalapeños, queso y salsa ranch</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="fs-3 fw-bold text-primary">S/21.90</span>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-primary btn-detalle">Ver</button>
+                                <button class="btn btn-sm btn--primary">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        </div>
     </div>
 
     <footer class="footer">
-        <div class="footer__grid">
-            <div class="footer__col">
-                <h3>BigBurger</h3>
-                <p>Donde cada bocado es una gran experiencia</p>
-                <p>Las mejores hamburguesas artesanales desde 2024</p>
+        <div class="container">
+            <div class="row footer__grid g-4">
+                <div class="col-12 col-md-4 footer__col">
+                    <h3>BigBurger</h3>
+                    <p>Donde cada bocado es una gran experiencia</p>
+                    <p>Las mejores hamburguesas artesanales desde 2024</p>
+                </div>
+                <div class="col-12 col-md-4 footer__col">
+                    <h3>Enlaces Rápidos</h3>
+                    <a href="menu.html">Nuestro Menú</a>
+                    <a href="especiales.html">Promociones</a>
+                    <a href="nosotros.html">Sobre Nosotros</a>
+                    <a href="contacto.html">Contáctanos</a>
+                </div>
+                <div class="col-12 col-md-4 footer__col">
+                    <h3>Contáctanos</h3>
+                    <p>📍 Av. Principal 123, Lima</p>
+                    <p>📞 (01) 234-5678</p>
+                    <p>✉️ info@bigburger.com</p>
+                    <p>🕐 Lun-Dom: 11AM - 11PM</p>
+                </div>
             </div>
-            <div class="footer__col">
-                <h3>Enlaces Rápidos</h3>
-                <a href="menu.html">Nuestro Menú</a>
-                <a href="especiales.html">Promociones</a>
-                <a href="nosotros.html">Sobre Nosotros</a>
-                <a href="contacto.html">Contáctanos</a>
+            <div class="footer__bottom mt-4">
+                <p>&copy; 2024 BigBurger. Todos los derechos reservados.</p>
             </div>
-            <div class="footer__col">
-                <h3>Contáctanos</h3>
-                <p>📍 Av. Principal 123, Lima</p>
-                <p>📞 (01) 234-5678</p>
-                <p>✉️ info@bigburger.com</p>
-                <p>🕒 Lun-Dom: 11AM - 11PM</p>
-            </div>
-        </div>
-        <div class="footer__bottom">
-            <p>&copy; 2024 BigBurger. Todos los derechos reservados.</p>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
